@@ -1,0 +1,32 @@
+name: Long-form stickman tests
+
+on:
+  pull_request:
+    paths:
+      - "scripts/stickman-longform.mjs"
+      - "scripts/tests/test-stickman-longform.mjs"
+      - "templates/stickman-longform/**"
+      - "package.json"
+      - ".github/workflows/stickman-longform.yml"
+  push:
+    branches:
+      - "feat/longform-stickman-animation"
+    paths:
+      - "scripts/stickman-longform.mjs"
+      - "scripts/tests/test-stickman-longform.mjs"
+      - "templates/stickman-longform/**"
+      - "package.json"
+      - ".github/workflows/stickman-longform.yml"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check JavaScript syntax
+        run: node --check scripts/stickman-longform.mjs
+      - name: Run repository tests
+        run: npm test
