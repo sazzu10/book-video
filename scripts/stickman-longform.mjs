@@ -48,14 +48,14 @@ function main(){
  run("npx",["--yes","hyperframes@0.7.33","render","--quality","standard","--output","visual.mp4"],out);
  const visual=path.join(out,"visual.mp4"),voice=story.voiceover?path.resolve(path.dirname(storyPath),story.voiceover):"",music=story.music?path.resolve(path.dirname(storyPath),story.music):"";
  if(!fs.existsSync(visual))throw new Error("HyperFrames completed but visual.mp4 is missing.");
- if(!voice&&!music){fs.copyFileSync(visual,path.join(out,"final.mp4"));console.log("Created visual-only final.mp4.");return;}
+ if(!voice&&!music){run("ffmpeg",["-y","-i",visual,"-vf","fps=24","-c:v","libx264","-preset","veryfast","-crf","20","-pix_fmt","yuv420p","-an","-t",String(seconds),"-movflags","+faststart",path.join(out,"final.mp4")],out);console.log("Created visual-only final.mp4 at 24 fps.");return;}
  const a=["-y","-i",visual];if(voice){if(!fs.existsSync(voice))throw new Error("Voiceover not found: "+voice);a.push("-i",voice);}if(music){if(!fs.existsSync(music))throw new Error("Music not found: "+music);a.push("-stream_loop","-1","-i",music);}
  const filters=[],parts=[];let idx=1;
  if(voice)parts.push("["+idx+++":a]volume=1.0[voice]");
  if(music)parts.push("["+idx+++":a]volume=0.12[music]");
  filters.push(parts.join(";"));
  if(voice&&music)filters.push("[voice][music]amix=inputs=2:duration=first:dropout_transition=2[aout]");else filters.push("["+(voice?"voice":"music")+"]anull[aout]");
- a.push("-filter_complex",filters.join(";"),"-map","0:v:0","-map","[aout]","-c:v","copy","-c:a","aac","-b:a","192k","-t",String(seconds),"-movflags","+faststart",path.join(out,"final.mp4"));
+ a.push("-filter_complex",filters.join(";"),"-map","0:v:0","-map","[aout]","-vf","fps=24","-c:v","libx264","-preset","veryfast","-crf","20","-pix_fmt","yuv420p","-c:a","aac","-b:a","192k","-t",String(seconds),"-movflags","+faststart",path.join(out,"final.mp4"));
  run("ffmpeg",a,out);console.log("Created "+path.join(out,"final.mp4"));
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href)main();
