@@ -58,8 +58,21 @@ jobs:
       - name: Install pinned HyperFrames browser
         run: npx --yes hyperframes@0.7.33 browser ensure
       - name: Generate and render full 8-minute MP4
+        if: github.event_name == 'push'
         run: node scripts/stickman-longform.mjs /tmp/stickman-ci-story.json --render --output /tmp/stickman-ci-output
       - name: Verify encoded MP4 duration and streams
+        if: github.event_name == 'push'
         run: |
           test -s /tmp/stickman-ci-output/final.mp4
-          ffprobe -v error -show_entries format=duration -show_entries stream=codec_name,width,height -of json /tmp/stickman-ci-output/final.mp4
+          DURATION="$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 /tmp/stickman-ci-output/final.mp4)"
+          echo "Rendered duration: $DURATION seconds"
+          awk -v d="$DURATION" 'BEGIN { if (d < 479 || d > 481) { print "Expected approximately 480 seconds"; exit 1 } }'
+          ffprobe -v error -show_entries stream=codec_name,width,height -of json /tmp/stickman-ci-output/final.mp4
+      - name: Upload rendered MP4
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: stickman-longform-smoke-test
+          path: /tmp/stickman-ci-output/final.mp4
+          if-no-files-found: error
+          retention-days: 3
