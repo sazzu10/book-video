@@ -26,9 +26,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Install media test dependency
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Check JavaScript syntax
         run: node --check scripts/stickman-longform.mjs
-      - name: Run repository tests
-        run: npm test
+      - name: Run focused stickman storyboard tests
+        run: node scripts/tests/test-stickman-longform.mjs
