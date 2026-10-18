@@ -35,6 +35,14 @@ function main(){
  if(errors.length)throw new Error("Invalid storyboard:\n- "+errors.join("\n- "));
  if(oi>=0&&!args[oi+1])throw new Error("--output requires a directory.");
  const out=path.resolve(oi>=0?args[oi+1]:path.join(path.dirname(storyPath),"stickman-output-"+slug(story.title)));
+ const protectedOutputs=["index.html","package.json","storyboard.json","visual.mp4","final.mp4"];
+ if(fs.existsSync(out)&&protectedOutputs.some(name=>fs.existsSync(path.join(out,name)))) {
+  throw new Error("Output directory already contains generated project/media files; choose a new --output directory to preserve existing work.");
+ }
+ const voice=story.voiceover?path.resolve(path.dirname(storyPath),story.voiceover):"";
+ const music=story.music?path.resolve(path.dirname(storyPath),story.music):"";
+ if(voice&&!fs.existsSync(voice))throw new Error("Voiceover not found: "+voice);
+ if(music&&!fs.existsSync(music))throw new Error("Music not found: "+music);
  fs.mkdirSync(out,{recursive:true});
  const seconds=story.scenes.reduce((sum,s)=>sum+Number(s.duration),0);
  const template=fs.readFileSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)),"../templates/stickman-longform/index.html"),"utf8");
@@ -46,7 +54,7 @@ function main(){
  console.log(JSON.stringify({status:"project_generated",title:story.title,scenes:story.scenes.length,durationSeconds:seconds,outputDir:out,renderRequested:render},null,2));
  if(!render){console.log("Review the project, then rerun with --render.");return;}
  run("npx",["--yes","hyperframes@0.7.33","render","--quality","standard","--output","visual.mp4"],out);
- const visual=path.join(out,"visual.mp4"),voice=story.voiceover?path.resolve(path.dirname(storyPath),story.voiceover):"",music=story.music?path.resolve(path.dirname(storyPath),story.music):"";
+ const visual=path.join(out,"visual.mp4");
  if(!fs.existsSync(visual))throw new Error("HyperFrames completed but visual.mp4 is missing.");
  if(!voice&&!music){run("ffmpeg",["-y","-i",visual,"-vf","fps=24","-c:v","libx264","-preset","veryfast","-crf","20","-pix_fmt","yuv420p","-an","-t",String(seconds),"-movflags","+faststart",path.join(out,"final.mp4")],out);console.log("Created visual-only final.mp4 at 24 fps.");return;}
  const a=["-y","-i",visual];if(voice){if(!fs.existsSync(voice))throw new Error("Voiceover not found: "+voice);a.push("-i",voice);}if(music){if(!fs.existsSync(music))throw new Error("Music not found: "+music);a.push("-stream_loop","-1","-i",music);}
