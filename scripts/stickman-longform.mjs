@@ -36,9 +36,7 @@ function main(){
  if(oi>=0&&!args[oi+1])throw new Error("--output requires a directory.");
  const out=path.resolve(oi>=0?args[oi+1]:path.join(path.dirname(storyPath),"stickman-output-"+slug(story.title)));
  const protectedOutputs=["index.html","package.json","storyboard.json","visual.mp4","final.mp4"];
- if(fs.existsSync(out)&&protectedOutputs.some(name=>fs.existsSync(path.join(out,name)))) {
-  throw new Error("Output directory already contains generated project/media files; choose a new --output directory to preserve existing work.");
- }
+ if(fs.existsSync(out)&&protectedOutputs.some(name=>fs.existsSync(path.join(out,name)))) throw new Error("Output directory already contains generated project/media files; choose a new --output directory to preserve existing work.");
  const voice=story.voiceover?path.resolve(path.dirname(storyPath),story.voiceover):"";
  const music=story.music?path.resolve(path.dirname(storyPath),story.music):"";
  if(voice&&!fs.existsSync(voice))throw new Error("Voiceover not found: "+voice);
@@ -53,7 +51,7 @@ function main(){
  fs.writeFileSync(path.join(out,"storyboard.json"),JSON.stringify(story,null,2)+"\n");
  console.log(JSON.stringify({status:"project_generated",title:story.title,scenes:story.scenes.length,durationSeconds:seconds,outputDir:out,renderRequested:render},null,2));
  if(!render){console.log("Review the project, then rerun with --render.");return;}
- run("npx",["--yes","hyperframes@0.7.33","render","--quality","standard","--output","visual.mp4"],out);
+ run("npx",["--yes","hyperframes@0.7.33","render","-c","index.html","-o","visual.mp4"],out);
  const visual=path.join(out,"visual.mp4");
  if(!fs.existsSync(visual))throw new Error("HyperFrames completed but visual.mp4 is missing.");
  if(!voice&&!music){run("ffmpeg",["-y","-i",visual,"-vf","fps=24","-c:v","libx264","-preset","veryfast","-crf","20","-pix_fmt","yuv420p","-an","-t",String(seconds),"-movflags","+faststart",path.join(out,"final.mp4")],out);console.log("Created visual-only final.mp4 at 24 fps.");return;}
