@@ -1,0 +1,305 @@
+{
+  "schemaVersion": "1.2.0",
+  "episodeId": "the-honest-woodcutter-v4.2",
+  "title": "ईमानदार लकड़हारा (V4.2 Professional Story Video)",
+  "displayTitle": "ईमानदार लकड़हारा",
+  "author": "पंचतंत्र की प्रसिद्ध प्रेरक कथा (AI Story Factory V4.2)",
+  "targetDuration": 60,
+  "videoSettings": {
+    "width": 1080,
+    "height": 1920,
+    "aspectRatio": "9:16",
+    "fps": 30,
+    "videoCodec": "libx264",
+    "audioCodec": "aac",
+    "pixFmt": "yuv420p"
+  },
+  "audioSettings": {
+    "language": "hi-IN",
+    "voiceProfile": "hi-IN-MadhurNeural-RubberbandFormantShaped",
+    "baseVoice": "hi-IN-MadhurNeural",
+    "vocalProfileNotes": "Calibrated youthful adult male delivery (~22-26 vocal age), pitch=1.16 with formant=shifted, de-aging EQ (highpass 95Hz, cut 220Hz, presence +3dB 3.2kHz), warm Hindi diction",
+    "bgmTrack": "如愿.mp3",
+    "bgmBaseVolume": 0.16,
+    "speechVolume": 1,
+    "duckingGainDb": -15
+  },
+  "scenes": [
+    {
+      "sceneIndex": 1,
+      "sceneId": "scene_001",
+      "narrationText": "एक शांत जंगल के पास, रामू नाम का एक सीधा-सादा लकड़हारा रहता था।",
+      "cameraMotion": {
+        "type": "hook_reveal",
+        "description": "Visual hook: Starts intimate on Ramu's face and eyes, pulling back to reveal the ancient forest"
+      },
+      "performance": {
+        "emotion": "curious_hook",
+        "vocalCharacter": "Young adult male (~22-26), warm, engaging storyteller hook",
+        "rate": "+36%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.06
+      },
+      "imageFileName": "scene_001.png",
+      "status": "ready",
+      "actualDuration": 4.716,
+      "timeRange": {
+        "start": 0,
+        "end": 4.72
+      }
+    },
+    {
+      "sceneIndex": 2,
+      "sceneId": "scene_002",
+      "narrationText": "वह हर रोज़ अपनी पुरानी लोहे की कुल्हाड़ी से, सूखी लकड़ियाँ काटता था।",
+      "cameraMotion": {
+        "type": "rhythmic_pan",
+        "description": "Subtle rhythmic tracking matching the woodcutting cadence"
+      },
+      "performance": {
+        "emotion": "warm_routine",
+        "vocalCharacter": "Natural conversational rhythm, clear articulation",
+        "rate": "+35%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.06
+      },
+      "imageFileName": "scene_002.png",
+      "status": "ready",
+      "actualDuration": 4.62,
+      "timeRange": {
+        "start": 4.72,
+        "end": 9.34
+      }
+    },
+    {
+      "sceneIndex": 3,
+      "sceneId": "scene_003",
+      "narrationText": "अचानक... नदी किनारे पेड़ काटते हुए, उसकी कुल्हाड़ी पानी में जा गिरी!",
+      "cameraMotion": {
+        "type": "crisis_snap",
+        "description": "Dramatic zoom with impact shudder synchronized to the water splash"
+      },
+      "performance": {
+        "emotion": "sudden_crisis",
+        "vocalCharacter": "Urgent, sharp suspense, energetic hook",
+        "rate": "+38%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.08
+      },
+      "imageFileName": "scene_003.png",
+      "status": "ready",
+      "actualDuration": 4.88,
+      "timeRange": {
+        "start": 9.34,
+        "end": 14.22
+      }
+    },
+    {
+      "sceneIndex": 4,
+      "sceneId": "scene_004",
+      "narrationText": "कुल्हाड़ी गहरे भँवर में समा गई... और बेबस रामू फूट-फूट कर रोने लगा।",
+      "cameraMotion": {
+        "type": "downward_sorrow",
+        "description": "Gentle downward tilt from weeping Ramu into the swirling river ripples"
+      },
+      "performance": {
+        "emotion": "restrained_sorrow",
+        "vocalCharacter": "Genuine poignant sadness, heartfelt without melodramatic shouting",
+        "rate": "+32%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.08
+      },
+      "imageFileName": "scene_004.png",
+      "status": "ready",
+      "actualDuration": 5.144,
+      "timeRange": {
+        "start": 14.22,
+        "end": 19.36
+      }
+    },
+    {
+      "sceneIndex": 5,
+      "sceneId": "scene_005",
+      "narrationText": "तभी... पावन लहरों के बीच से, एक करुणामयी दिव्य जलदेवी प्रकट हुईं!",
+      "cameraMotion": {
+        "type": "goddess_ascend",
+        "description": "Upward pan revealing Jaldevi rising gracefully with celestial radiance"
+      },
+      "performance": {
+        "emotion": "divine_wonder",
+        "vocalCharacter": "Awe-inspired, controlled tension, gentle mystical reveal",
+        "rate": "+34%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.08
+      },
+      "imageFileName": "scene_005.png",
+      "status": "ready",
+      "actualDuration": 5.216,
+      "timeRange": {
+        "start": 19.36,
+        "end": 24.58
+      }
+    },
+    {
+      "sceneIndex": 6,
+      "sceneId": "scene_006",
+      "narrationText": "देवी ने पानी से एक चमचमाती... सोने की कुल्हाड़ी निकाली।",
+      "cameraMotion": {
+        "type": "gold_axe_focus",
+        "description": "Framing tightly into the golden axe head and sparkling droplets"
+      },
+      "performance": {
+        "emotion": "golden_temptation",
+        "vocalCharacter": "Curious, expectant, smooth articulation",
+        "rate": "+36%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.06
+      },
+      "imageFileName": "scene_006.png",
+      "status": "ready",
+      "actualDuration": 4.596,
+      "timeRange": {
+        "start": 24.58,
+        "end": 29.17
+      }
+    },
+    {
+      "sceneIndex": 7,
+      "sceneId": "scene_007",
+      "narrationText": "रामू ने हाथ जोड़कर नम्रता से कहा—'हे देवी, यह सोने की कुल्हाड़ी मेरी नहीं है।'",
+      "cameraMotion": {
+        "type": "ramu_namaste_reaction",
+        "description": "Direct cut to Ramu on left in reverent namaste declining the gold axe"
+      },
+      "performance": {
+        "emotion": "humble_integrity",
+        "vocalCharacter": "Youthful moral confidence, honest, humble and resolute",
+        "rate": "+38%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.08
+      },
+      "imageFileName": "scene_007.png",
+      "status": "ready",
+      "actualDuration": 5.312,
+      "timeRange": {
+        "start": 29.17,
+        "end": 34.48
+      }
+    },
+    {
+      "sceneIndex": 8,
+      "sceneId": "scene_008",
+      "narrationText": "फिर देवी ने चाँदी की कुल्हाड़ी दिखाई, पर रामू ने उसे भी लेने से साफ़ मना कर दिया।",
+      "cameraMotion": {
+        "type": "silver_axe_reveal",
+        "description": "Two-shot reveal of the silver axe and Ramu shaking his head in refusal"
+      },
+      "performance": {
+        "emotion": "steady_truth",
+        "vocalCharacter": "Clear, resolute, maintaining narrative suspense",
+        "rate": "+38%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.06
+      },
+      "imageFileName": "scene_008.png",
+      "status": "ready",
+      "actualDuration": 5.004,
+      "timeRange": {
+        "start": 34.48,
+        "end": 39.49
+      }
+    },
+    {
+      "sceneIndex": 9,
+      "sceneId": "scene_009",
+      "narrationText": "तीसरी बार जब देवी ने उसकी पुरानी लोहे की कुल्हाड़ी निकाली—",
+      "cameraMotion": {
+        "type": "iron_axe_joy",
+        "description": "Push into the familiar iron axe head tracking up to Ramu's smiling face"
+      },
+      "performance": {
+        "emotion": "joyful_anticipation",
+        "vocalCharacter": "Buoyant, rising excitement leading into the climactic payoff",
+        "rate": "+40%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.06
+      },
+      "imageFileName": "scene_009.png",
+      "status": "ready",
+      "actualDuration": 3.804,
+      "timeRange": {
+        "start": 39.49,
+        "end": 43.29
+      }
+    },
+    {
+      "sceneIndex": 10,
+      "sceneId": "scene_010",
+      "narrationText": "तो रामू खुशी से झूम उठा! देवी उसकी सच्चाई से अत्यंत प्रसन्न हुईं।",
+      "cameraMotion": {
+        "type": "radiant_payoff",
+        "description": "Expansive reveal with celestial glow as the Goddess blesses Ramu"
+      },
+      "performance": {
+        "emotion": "radiant_payoff",
+        "vocalCharacter": "Exuberant, warm, triumphant emotional release",
+        "rate": "+36%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.08
+      },
+      "imageFileName": "scene_010.png",
+      "status": "ready",
+      "actualDuration": 5.216,
+      "timeRange": {
+        "start": 43.29,
+        "end": 48.51
+      }
+    },
+    {
+      "sceneIndex": 11,
+      "sceneId": "scene_011",
+      "narrationText": "देवी ने उपहार में तीनों कुल्हाड़ियाँ उसे दे दीं, और रामू हँसते-हँसते गाँव लौट आया।",
+      "cameraMotion": {
+        "type": "golden_hour_journey",
+        "description": "Cinematic horizontal tracking pan along the sunset trail towards home"
+      },
+      "performance": {
+        "emotion": "triumphant_return",
+        "vocalCharacter": "Bright, celebratory, satisfying narrative movement",
+        "rate": "+36%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.08
+      },
+      "imageFileName": "scene_011.png",
+      "status": "ready",
+      "actualDuration": 5.264,
+      "timeRange": {
+        "start": 48.51,
+        "end": 53.77
+      }
+    },
+    {
+      "sceneIndex": 12,
+      "sceneId": "scene_012",
+      "narrationText": "यह कहानी सिखाती है—कि ईमानदारी ही इंसान की सबसे बड़ी और सच्ची दौलत होती है।",
+      "cameraMotion": {
+        "type": "village_warmth",
+        "description": "Warm steady push into the village gathering, ending on the moral tableau"
+      },
+      "performance": {
+        "emotion": "warm_moral_closure",
+        "vocalCharacter": "Resonant, inspirational, memorable takeaway connecting with the audience",
+        "rate": "+35%",
+        "pitch": "+0Hz",
+        "pauseSec": 0.1
+      },
+      "imageFileName": "scene_012.png",
+      "status": "ready",
+      "actualDuration": 5.812,
+      "timeRange": {
+        "start": 53.77,
+        "end": 59.58
+      }
+    }
+  ]
+}

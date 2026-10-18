@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": "Endless1936/book-video",
+  "episode": "the-honest-woodcutter",
+  "characters": {
+    "woodcutter_ramu": {
+      "name": "Ramu (रामू)",
+      "archetype": "The Honest Elder Woodcutter",
+      "ageRange": "58-65 years old",
+      "face": "Gentle, kind, deeply benevolent expression with warm smile-lines around eyes",
+      "skinTone": "Warm sun-kissed Indian earthy skin tone",
+      "facialHair": "Trimmed silver-white beard and full white moustache",
+      "hair": "Silver-white hair tucked neatly under headwear",
+      "headwear": "Simple wrapped rustic beige/khaki cotton cloth pagri (turban)",
+      "clothing": {
+        "top": "Simple rustic off-white/beige cotton kurta with rolled sleeves and subtle worn patches",
+        "bottom": "Traditional off-white cotton dhoti",
+        "footwear": "Simple leather strap village chappals (sandals)"
+      },
+      "build": "Lean, weathered working woodcutter posture, humble and dignified",
+      "canonicalReferenceImagePath": "/data/data/com.termux/files/home/.gemini/antigravity-cli/brain/96ab5536-4620-4ebb-bd5c-6580664260e4/honest_woodcutter_scene_1_1792253347010.jpg"
+    },
+    "river_goddess": {
+      "name": "Jaldevi (जलदेवी / River Goddess)",
+      "archetype": "Benevolent Divine River Deity",
+      "facialIdentity": "Serene, compassionate, immortal divine beauty with graceful features and gentle smile",
+      "complexion": "Ethereal translucent cyan / aquamarine water-skin that glows softly",
+      "hair": "Long flowing cascading aquatic-blue hair adorned with fresh pink lotus blossoms",
+      "attire": "Diaphanous sheer translucent water-silk sari that merges seamlessly into swirling river ripples, delicate gold/pearl armlets and bangles",
+      "aura": "Soft celestial golden-white divine halo and floating sparkling water droplets",
+      "canonicalReferenceImagePath": "/data/data/com.termux/files/home/.gemini/antigravity-cli/brain/96ab5536-4620-4ebb-bd5c-6580664260e4/honest_woodcutter_scene_7_1792253700730.jpg"
+    }
+  },
+  "props": {
+    "iron_axe": {
+      "name": "Old Iron Axe (पुरानी लोहे की कुल्हाड़ी)",
+      "description": "Rustic, hand-forged dark iron axe head with slightly worn edge, sturdy weathered wooden handle with grain",
+      "scenesPresent": ["scene_001", "scene_002", "scene_003", "scene_009", "scene_010", "scene_011"]
+    },
+    "gold_axe": {
+      "name": "Golden Axe (सोने की कुल्हाड़ी)",
+      "description": "Gleaming solid gold axe with polished ornate blade, warm yellow specular glints and dripping water droplets",
+      "scenesPresent": ["scene_006", "scene_007", "scene_010", "scene_011"]
+    },
+    "silver_axe": {
+      "name": "Silver Axe (चाँदी की कुल्हाड़ी)",
+      "description": "Shining bright silver axe with cool blue-white crystalline glints and sleek polished finish",
+      "scenesPresent": ["scene_008", "scene_010", "scene_011"]
+    }
+  },
+  "artStyle": {
+    "medium": "Rich watercolor and gouache storybook illustration on textured watercolor paper",
+    "colorPalette": "Lush moss greens, warm amber sunlight, aquatic cyan, soft earthy ochres",
+    "lighting": "Dappled morning sunlight filtering through ancient forest canopy, celestial glowing halos for deity",
+    "aspectRatio": "9:16 vertical (1080x1920)",
+    "safeMarginV": 280
+  }
+}
