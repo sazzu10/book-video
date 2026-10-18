@@ -21,12 +21,45 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
       - name: Check JavaScript syntax
         run: node --check scripts/stickman-longform.mjs
       - name: Run focused stickman storyboard tests
         run: node scripts/tests/test-stickman-longform.mjs
+      - name: Create valid 8-minute CI storyboard
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const actions = ['walk','talk','point','think','wave','run','sit','jump','celebrate','idle'];
+          const expressions = ['neutral','happy','sad','angry','surprised','thinking'];
+          const backgrounds = ['warm','night','forest','city','sad','dream'];
+          const scenes = Array.from({length: 60}, (_, i) => ({
+            duration: 8,
+            narration: `Smoke-test scene ${i + 1}: the stickman moves and reacts.`,
+            caption: `Scene ${i + 1} — continuous character action`,
+            action: actions[i % actions.length],
+            expression: expressions[i % expressions.length],
+            background: backgrounds[i % backgrounds.length]
+          }));
+          fs.writeFileSync('/tmp/stickman-ci-story.json', JSON.stringify({
+            title: 'CI Stickman Render Smoke Test',
+            scenes
+          }, null, 2));
+          NODE
+      - name: Install pinned HyperFrames browser
+        run: npx --yes hyperframes@0.7.33 browser ensure
+      - name: Generate and render full 8-minute MP4
+        run: node scripts/stickman-longform.mjs /tmp/stickman-ci-story.json --render --output /tmp/stickman-ci-output
+      - name: Verify encoded MP4 duration and streams
+        run: |
+          test -s /tmp/stickman-ci-output/final.mp4
+          ffprobe -v error -show_entries format=duration -show_entries stream=codec_name,width,height -of json /tmp/stickman-ci-output/final.mp4
