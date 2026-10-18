@@ -6,6 +6,7 @@
     "check": "node scripts/check.mjs",
     "test": "node scripts/run-tests.mjs",
     "workflow": "node scripts/workflow-state.mjs",
-    "smoke:timings": "node scripts/tests/smoke-timing-fallback.mjs"
+    "smoke:timings": "node scripts/tests/smoke-timing-fallback.mjs",
+    "stickman:longform": "node scripts/stickman-longform.mjs"
   }
 }
