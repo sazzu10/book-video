@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1280,height=720"><title>Stickman Long Form</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>*{box-sizing:border-box}html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#f3f0e8}#root{width:1280px;height:720px;overflow:hidden}canvas{display:block;width:1280px;height:720px}</style></head>
+<body><main id="root" data-composition-id="main" data-start="0" data-duration="480" data-width="1280" data-height="720"><canvas id="stage" width="1280" height="720"></canvas></main>
+<script>
+/*__STORYBOARD__*/
+const c=document.getElementById("stage"),x=c.getContext("2d"),W=1280,H=720;
+const palettes={warm:["#f5dfc5","#d5b18a","#bf704b"],night:["#1e2947","#151a2d","#e8c96a"],forest:["#d7e6d0","#78966c","#38684e"],city:["#dbe4ed","#a4b4c4","#5b7188"],sad:["#cbd5e2","#9aa8b9","#65768a"],dream:["#e9dff4","#c5b1db","#9b7bbd"]};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function line(a,b,d,e,w=9){x.beginPath();x.moveTo(a,b);x.lineTo(d,e);x.lineWidth=w;x.lineCap="round";x.strokeStyle="#20252d";x.stroke()}
+function dot(a,b,r,fill="#fffaf0",stroke="#20252d",w=8){x.beginPath();x.arc(a,b,r,0,Math.PI*2);x.fillStyle=fill;x.fill();x.lineWidth=w;x.strokeStyle=stroke;x.stroke()}
+function background(s,t){const p=palettes[s.background]||palettes.warm,g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,p[0]);g.addColorStop(1,p[1]);x.fillStyle=g;x.fillRect(0,0,W,H);x.globalAlpha=.2;x.fillStyle=p[2];for(let i=0;i<6;i++){const xx=(i*241+65)%W,hh=60+(i%3)*40;x.fillRect(xx,H-150-hh,75,hh+150)}x.globalAlpha=1;x.fillStyle=p[1];x.fillRect(0,H-150,W,150);x.fillStyle=p[2];x.globalAlpha=.7;x.beginPath();x.arc(1080,120,38+Math.sin(t)*3,0,Math.PI*2);x.fill();x.globalAlpha=1}
+function character(s,t){const a=s.action||"talk",e=s.expression||"neutral",phase=t*(a==="run"?10:a==="walk"?6:2.4);let px=640+Math.sin(t*.55)*28,py=440+Math.sin(phase*2)*2;if(a==="walk")px+=Math.sin(phase)*40;if(a==="run")px+=Math.sin(phase)*70;if(a==="jump")py-=Math.abs(Math.sin(t*2.6))*100;if(a==="fall")py+=Math.min(60,t*18);if(a==="sit")py+=35;
+ const headY=py-165,shoulder=py-105,hip=py+10,swing=(a==="walk"||a==="run")?Math.sin(phase)*.65:0;let la=swing-.35,ra=-swing+.35,ll=-swing,rl=swing;if(a==="point")ra=-1.5;if(a==="wave")ra=-1.15+Math.sin(t*7)*.35;if(a==="think"){ra=-2.05;la=.25}if(a==="celebrate"){la=-2.25;ra=2.25}if(a==="sit"){ll=-.8;rl=.8}if(a==="fall"){la=-2.1;ra=2.1;ll=-1.1;rl=1.1}
+ const end=(sx,sy,ang,len)=>({x:sx+Math.sin(ang)*len,y:sy+Math.cos(ang)*len}),lh=end(px-25,shoulder,la,82),rh=end(px+25,shoulder,ra,82),lf=end(px-16,hip,ll,105),rf=end(px+16,hip,rl,105);
+ x.fillStyle="rgba(20,25,30,.18)";x.beginPath();x.ellipse(px,H-147,75,13,0,0,Math.PI*2);x.fill();line(px-16,hip,lf.x,lf.y,12);line(px+16,hip,rf.x,rf.y,12);line(px,shoulder,px,hip,13);line(px-25,shoulder,lh.x,lh.y,11);line(px+25,shoulder,rh.x,rh.y,11);dot(px,headY,43);
+ const ey=headY-5;if(e==="surprised"){dot(px-13,ey,5,"#20252d","#20252d",1);dot(px+13,ey,5,"#20252d","#20252d",1)}else{line(px-20,ey,px-8,ey+(e==="angry"?-5:0),4);line(px+8,ey+(e==="angry"?-5:0),px+20,ey,4)}
+ x.beginPath();x.strokeStyle="#20252d";x.lineWidth=4;if(e==="happy"||a==="celebrate")x.arc(px,headY+9,14,.15,Math.PI-.15);else if(e==="sad")x.arc(px,headY+24,12,Math.PI+.25,Math.PI*2-.25);else if(e==="surprised"){x.arc(px,headY+15,7,0,Math.PI*2);x.fillStyle="#20252d";x.fill()}else if(a==="talk")x.arc(px,headY+14,9+Math.abs(Math.sin(t*8))*5,.1,Math.PI-.1);else{x.moveTo(px-10,headY+17);x.lineTo(px+10,headY+17)}x.stroke();
+ if(a==="think"){dot(px+82,headY-42,6);dot(px+105,headY-63,11)}if(a==="run"||a==="jump"){x.strokeStyle="rgba(32,37,45,.4)";x.lineWidth=4;for(let i=0;i<3;i++){x.beginPath();x.moveTo(px-85-i*10,py-15+i*18);x.lineTo(px-110-i*10,py-15+i*18);x.stroke()}}
+}
+function draw(t){let start=0,i=STORYBOARD.scenes.length-1;for(let j=0;j<STORYBOARD.scenes.length;j++){if(t<start+Number(STORYBOARD.scenes[j].duration)||j===STORYBOARD.scenes.length-1){i=j;break}start+=Number(STORYBOARD.scenes[j].duration)}const s=STORYBOARD.scenes[i],local=clamp(t-start,0,Number(s.duration));background(s,local);character(s,local);
+ x.fillStyle="rgba(255,255,255,.9)";x.beginPath();x.roundRect(54,42,1172,92,20);x.fill();x.fillStyle="#20252d";x.font="700 26px system-ui,sans-serif";x.textAlign="left";x.textBaseline="middle";x.fillText(STORYBOARD.title,82,88,1110);
+ x.fillStyle="rgba(255,255,255,.95)";x.beginPath();x.roundRect(70,562,1140,104,18);x.fill();x.fillStyle="#20252d";x.font="600 27px system-ui,sans-serif";x.textAlign="center";const caption=String(s.caption||s.narration||""),arr=Array.from(caption),lines=[""];for(const ch of arr){let k=lines.length-1;if((lines[k]+ch).length>64&&lines.length<2)lines.push("");lines[lines.length-1]+=ch}lines.slice(0,2).forEach((v,j)=>x.fillText(v,640,602+j*34,1080));
+ const total=STORYBOARD.scenes.reduce((sum,z)=>sum+Number(z.duration),0);x.fillStyle="rgba(32,37,45,.18)";x.fillRect(0,704,W,16);x.fillStyle="#bf704b";x.fillRect(0,704,W*clamp(t/total,0,1),16)}
+const TOTAL=STORYBOARD.scenes.reduce((sum,s)=>sum+Number(s.duration),0);document.getElementById("root").dataset.duration=String(TOTAL);const clock={t:0};const timeline=gsap.timeline({paused:true});timeline.to(clock,{t:TOTAL,duration:TOTAL,ease:"none",onUpdate:()=>draw(clock.t)});timeline.progress(0);window.__bookVideoStickmanTimeline=timeline;draw(0);
+</script></body></html>
